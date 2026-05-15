@@ -50,7 +50,10 @@ The project reflects my interest in operational software systems, modern enginee
 
 ## Screenshots
 
-> Screenshots coming soon.
+<img width="1918" height="908" alt="image" src="https://github.com/user-attachments/assets/05d1d7f5-9dee-4cf0-82dc-cced146ccc50" />
+<img width="1918" height="908" alt="image" src="https://github.com/user-attachments/assets/81ee5e96-8e7a-4f19-8b6e-db841303883d" />
+
+
 
 ---
 
