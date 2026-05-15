@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:16
+    container_name: sicomfa_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - sicomfa_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: sicomfa_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  api:
+    build: ./api
+    container_name: sicomfa_api
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      PORT: ${API_PORT}
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./api/uploads:/app/uploads
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  sicomfa_db_data:
